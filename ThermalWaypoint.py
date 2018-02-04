@@ -117,9 +117,11 @@ class Ui_MainWindow(object):
         f = open(str(name.toUtf8()).decode('utf-8')+".cup","w")
         out2 = []
         out3 = []
+        
         #checar o tamanho da variação de segundos de uma linha para outra
         variacao1 = int(leitura[2][5:7]) - int(leitura[1][5:7])
         variacao2 = int(leitura[1][5:7]) - int(leitura[0][5:7])
+        
         # verificando qual das duas variaçoes é > 0 e colocando o resultado numa variavel
         variacaolinha = 0
         if (variacao1 > 0):
@@ -127,20 +129,20 @@ class Ui_MainWindow(object):
         else:
             variacaolinha = variacao2
         variacaolinha = int(variacaolinha)
+        
         #calcular o delta por todo o arquivo
-        n = 0
-        z = 1
-        while (int(z) < int(linhas)):
-      
-           calculo1 = float(leitura[z][31:35]) -float(leitura[n][31:35])
+        z = 61 #pula 60 linhas iniciais (lift, rampa) 
+        calculo1 = float(leitura[z-1][31:35])
+        while (int(z) < int(linhas)):      
+           #identifica as termais e coloca em out2
+           calculo1 = float(leitura[z][31:35]) - float(calculo1)
            calculo = float(calculo1)/float(variacaolinha)
+           calculo1 = float(leitura[z][31:35])
            if (float(calculo) >= float(subida)):
-             out2.append(leitura[n])
-             n +=1
-             z +=1
-           else:
-             n +=1
-             z +=1
+             out2.append(leitura[z-1])
+           z +=1
+
+        #pega as termais em out2 e escreve no arquivo .cup
         for i,linha in enumerate(out2):
           linha     = linha.strip()
           altura    = re.findall(r'(?<=A\d{5})\d{5}', linha)[0]

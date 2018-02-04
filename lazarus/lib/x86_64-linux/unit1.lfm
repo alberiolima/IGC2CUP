@@ -1,0 +1,63 @@
+object Form1: TForm1
+  Left = 478
+  Height = 472
+  Top = 149
+  Width = 518
+  Caption = 'IGC2CUP'
+  ClientHeight = 472
+  ClientWidth = 518
+  OnCreate = FormCreate
+  LCLVersion = '1.8.0.6'
+  object LabeledEditIGCFileName: TLabeledEdit
+    Left = 11
+    Height = 27
+    Top = 26
+    Width = 467
+    EditLabel.AnchorSideLeft.Control = LabeledEditIGCFileName
+    EditLabel.AnchorSideRight.Control = LabeledEditIGCFileName
+    EditLabel.AnchorSideRight.Side = asrBottom
+    EditLabel.AnchorSideBottom.Control = LabeledEditIGCFileName
+    EditLabel.Left = 11
+    EditLabel.Height = 17
+    EditLabel.Top = 6
+    EditLabel.Width = 467
+    EditLabel.Caption = 'LabeledEditIGCFileName'
+    EditLabel.ParentColor = False
+    TabOrder = 0
+    Text = 'LabeledEditIGCFileName'
+  end
+  object Button1: TButton
+    Left = 483
+    Height = 25
+    Top = 26
+    Width = 25
+    Caption = '...'
+    OnClick = Button1Click
+    TabOrder = 1
+  end
+  object btGerar: TButton
+    Left = 400
+    Height = 25
+    Top = 64
+    Width = 75
+    Caption = 'btGerar'
+    OnClick = btGerarClick
+    TabOrder = 2
+  end
+  object Memo: TMemo
+    Left = 16
+    Height = 360
+    Top = 96
+    Width = 492
+    Lines.Strings = (
+      'Memo'
+    )
+    ScrollBars = ssVertical
+    TabOrder = 3
+  end
+  object OpenDialog: TOpenDialog
+    Filter = 'IGC|*.igc;*.IGC'
+    left = 56
+    top = 80
+  end
+end
